@@ -2,6 +2,7 @@ package model
 
 import "time"
 
+// Item represents a news item fetched from an RSS feed.
 type Item struct {
 	Title      string
 	Categories []string

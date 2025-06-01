@@ -45,6 +45,7 @@ func (s RSSSource) loadFeed(ctx context.Context, url string) (*rss.Feed, error) 
 	case feed := <-feedCh:
 		return feed, nil
 	}
+
 }
 
 func (s RSSSource) Fetch(ctx context.Context) ([]model.Item, error) {
