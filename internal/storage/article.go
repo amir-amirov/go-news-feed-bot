@@ -43,7 +43,7 @@ func (s *ArticlePostgresStorage) AllNotPosted(ctx context.Context, since time.Ti
 		ORDER BY a_published_at DESC
 		LIMIT $2
 	`
-	rows, err := s.db.QueryContext(ctx, query, since, limit)
+	rows, err := s.db.QueryContext(ctx, query, since.UTC().Format(time.RFC3339), limit)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (s *ArticlePostgresStorage) AllNotPosted(ctx context.Context, since time.Ti
 func (s *ArticlePostgresStorage) MarkPosted(ctx context.Context, id int64) error {
 	query := `
 		UPDATE articles
-		SET a_posted_at = $1
+		SET a_posted_at = $1::timestamp
 		WHERE a_id = $2
 	`
 
