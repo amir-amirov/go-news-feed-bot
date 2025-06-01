@@ -85,15 +85,6 @@ type dbSource struct {
 	CreatedAt time.Time `db:"created_at"`
 }
 
-func dbSourceFromModel(source model.Source) dbSource {
-	return dbSource{
-		ID:        source.ID,
-		Name:      source.Name,
-		FeedURL:   source.FeedURL,
-		CreatedAt: source.CreatedAt,
-	}
-}
-
 func modelSourceFromDB(dbSource dbSource) *model.Source {
 	return &model.Source{
 		ID:        dbSource.ID,

@@ -68,3 +68,11 @@ func (s RSSSource) Fetch(ctx context.Context) ([]model.Item, error) {
 
 	return items, nil
 }
+
+func (s RSSSource) ID() int64 {
+	return s.SourceID
+}
+
+func (s RSSSource) Name() string {
+	return s.SourceName
+}
