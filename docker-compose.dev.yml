@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgress
+      POSTGRES_DB: news_feed_bot
+      PG_DATA: /var/lib/postgresql/data
+    ports:
+      - "5430:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  app:
+    restart: always
+    build: .
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHANNEL_ID=${TELEGRAM_CHANNEL_ID}
+      - DATABASE_DSN=${DATABASE_DSN}
+      - FETCH_INTERVAL=${FETCH_INTERVAL}
+      - NOTIFICATION_INTERVAL=${NOTIFICATION_INTERVAL}
+      - FILTER_KEYWORDS=${FILTER_KEYWORDS}
+      - OPENAI_KEY=${OPENAI_KEY}
+      - OPENAI_PROMPT=${OPENAI_PROMPT}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
