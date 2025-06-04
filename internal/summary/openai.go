@@ -56,7 +56,7 @@ func (s *OpenAISummarizer) Summarizer(text string) (string, error) {
 				Content: text,
 			},
 		},
-		MaxTokens:   1024,
+		MaxTokens:   400,
 		Temperature: 1,
 		TopP:        1,
 	}
