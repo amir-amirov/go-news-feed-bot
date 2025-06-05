@@ -37,12 +37,11 @@ func createTables() {
 
 	createSourcesTable := `
 	CREATE TABLE IF NOT EXISTS sources(
-		id SERIAL PRIMARY KEY,
-		name VARCHAR(255) NOT NULL,
-		feed_url VARCHAR(255) NOT NULL,
-		created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-		updated_at TIMESTAMP NOT NULL DEFAULT NOW()
-)
+    	id         SERIAL PRIMARY KEY,
+    	name       VARCHAR(255) NOT NULL,
+    	feed_url   VARCHAR(255) NOT NULL,
+    	created_at TIMESTAMP    NOT NULL DEFAULT NOW()
+	)
 	`
 
 	_, err := DB.Exec(createSourcesTable)
@@ -51,17 +50,21 @@ func createTables() {
 	}
 
 	createArticlesTable := `
-	CREATE TABLE IF NOT EXISTS articles(
-		id SERIAL PRIMARY KEY,
-		source_id INT NOT NULL,
-		title VARCHAR(255) NOT NULL,
-		link VARCHAR(255) NOT NULL,
-		summary TEXT NOT NULL,
-		published_at TIMESTAMP NOT NULL,
-		created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-		posted_at TIMESTAMP NOT NULL DEFAULT NOW(),
-		CONSTRAINT fk_articles_sources_id
-			FOREIGN KEY (source_id) REFERENCES sources(id)
+	CREATE TABLE articles
+	(
+		id           BIGSERIAL PRIMARY KEY,
+		source_id    BIGINT       NOT NULL,
+		title        VARCHAR(255) NOT NULL,
+		summary      TEXT         NOT NULL,
+		link         TEXT         NOT NULL UNIQUE,
+		published_at TIMESTAMP    NOT NULL,
+		created_at   TIMESTAMP    NOT NULL DEFAULT NOW(),
+		posted_at    TIMESTAMP,
+		CONSTRAINT fk_articles_source_id
+			FOREIGN KEY (source_id)
+				REFERENCES sources (id)
+				ON DELETE CASCADE
+	);
 )
 	`
 
