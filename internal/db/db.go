@@ -50,7 +50,7 @@ func createTables() {
 	}
 
 	createArticlesTable := `
-	CREATE TABLE articles
+	CREATE TABLE IF NOT EXISTS articles
 	(
 		id           BIGSERIAL PRIMARY KEY,
 		source_id    BIGINT       NOT NULL,
