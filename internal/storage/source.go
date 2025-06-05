@@ -20,7 +20,7 @@ func NewSourcePostgresStorage(db *sql.DB) *SourcePostgresStorage {
 }
 
 func (s *SourcePostgresStorage) Sources(ctx context.Context) ([]model.Source, error) {
-	query := `SELECT id, name, feed_url, created_at FROM sources`
+	query := `SELECT id, name, feed_url, created_at FROM sources;`
 
 	rows, err := s.db.QueryContext(ctx, query)
 	if err != nil {
