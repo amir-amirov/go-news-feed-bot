@@ -46,7 +46,7 @@ func main() {
 			summarizer,
 			botAPI,
 			config.NotificationInterval,
-			config.FetchInterval,
+			config.LookupTimeWindow,
 			config.TelegramChannelID,
 		)
 	)

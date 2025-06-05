@@ -14,6 +14,7 @@ type Config struct {
 	DatabaseDSN          string
 	FetchInterval        time.Duration
 	NotificationInterval time.Duration
+	LookupTimeWindow     time.Duration
 	OpenAIKey            string
 	OpenAIPrompt         string
 	OpenAIModel          string
@@ -39,6 +40,7 @@ func Load() *Config {
 		channelID, _ := strconv.ParseInt(os.Getenv("TELEGRAM_CHANNEL_ID"), 10, 64)
 		fetchInterval, _ := time.ParseDuration(os.Getenv("FETCH_INTERVAL"))
 		notifyInterval, _ := time.ParseDuration(os.Getenv("NOTIFICATION_INTERVAL"))
+		lookupTimeWindow, _ := time.ParseDuration(os.Getenv("LOOK_UP_TIME_WINDOW"))
 
 		cfg = &Config{
 			TelegramBotToken:     mustGet("TELEGRAM_BOT_TOKEN"),
@@ -46,6 +48,7 @@ func Load() *Config {
 			DatabaseDSN:          os.Getenv("DATABASE_DSN"),
 			FetchInterval:        fetchInterval,
 			NotificationInterval: notifyInterval,
+			LookupTimeWindow:     lookupTimeWindow,
 			OpenAIKey:            mustGet("OPENAI_KEY"),
 			OpenAIPrompt:         os.Getenv("OPENAI_PROMPT"),
 			OpenAIModel:          os.Getenv("OPENAI_MODEL"),
