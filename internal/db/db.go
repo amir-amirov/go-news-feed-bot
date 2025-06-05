@@ -65,7 +65,6 @@ func createTables() {
 				REFERENCES sources (id)
 				ON DELETE CASCADE
 	);
-)
 	`
 
 	_, err = DB.Exec(createArticlesTable)
