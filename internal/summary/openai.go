@@ -21,9 +21,10 @@ type OpenAISummarizer struct {
 
 func NewOpenAISummarizer(apiKey, model, prompt string) *OpenAISummarizer {
 	s := &OpenAISummarizer{
-		client: openai.NewClient(apiKey),
-		prompt: prompt,
-		model:  model,
+		client:  openai.NewClient(apiKey),
+		prompt:  prompt,
+		model:   model,
+		enabled: true,
 	}
 
 	log.Printf("openai summarizer is enabled: %v", apiKey != "")

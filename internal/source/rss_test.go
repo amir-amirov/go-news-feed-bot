@@ -23,7 +23,7 @@ func TestFetch_RealRSSFeed(t *testing.T) {
 	// 	SourceName: "BBC News",
 	// }
 	src := source.RSSSource{
-		URL:        "https://thisweekinreact.com/rss.xml",
+		URL:        "https://hashnode.com/n/go/rss",
 		SourceID:   1,
 		SourceName: "BBC News",
 	}

@@ -35,8 +35,8 @@ func main() {
 		fetcher            = fetcher.New(articleRespository, sourceRespository, config.FetchInterval, filterKeywords)
 
 		summarizer = summary.NewOpenAISummarizer(
-			// config.OpenAIKey,
-			"",
+			config.OpenAIKey,
+			// "",
 			config.OpenAIModel,
 			config.OpenAIPrompt,
 		)
